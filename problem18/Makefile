@@ -11,4 +11,4 @@ triangle.o : triangle.h triangle.cpp
 	    $(CC) $(CFLAGS) triangle.cpp
 
 clean:
-	    \rm *.o *~ p1
+	    \rm *.o *~ triangle
