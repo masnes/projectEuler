@@ -47,6 +47,7 @@ int main(void) {
    * will be used as tool for populating a graph
    * that properly links between each value and its
    * two children values (in the next line)
+   */
   int lineoffset[15];
   counter = 0;
   for (int i = 0; i <= 15; i++) {
