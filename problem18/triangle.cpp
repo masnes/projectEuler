@@ -22,6 +22,7 @@ class nullNodePassed
 };
 
 int main(void) {
+
   /* read numbers in triangles file into an array */
   fstream myfile("./triangle.txt", ios_base::in);
   int set;
@@ -37,10 +38,15 @@ int main(void) {
     }
     cout << endl;
   }
-  /* graph display for each numbers */
-  // 120 numbers, 2 children per number (0 and 1) except for last row
-  // 105 numbers before last row
-  // array storing the offset to the beginning of each line
+
+  /* detect what each offset of the val_array that 
+   * represents the start of a new line of values:
+   * 
+   * we're using a linear array to store the triangle data
+   * we need some way to find this offset
+   * will be used as tool for populating a graph
+   * that properly links between each value and its
+   * two children values (in the next line)
   int lineoffset[15];
   counter = 0;
   for (int i = 0; i <= 15; i++) {
@@ -48,9 +54,12 @@ int main(void) {
       counter++;
     }
     lineoffset[i] = counter;
-    printf("lineoffset at %d = %d \n", i, lineoffset[i]);
-  }
+    // printf("lineoffset at %d = %d \n", i, lineoffset[i]);
+  } 
+
   // only using graph[i][0] and graph[i][1], but the extra padding seems to avoid a bug (array space overflow issues?)
+  // 120 numbers, 2 children per number (0 and 1) except for last row
+  // 105 numbers before last row
   int graph[105][2];
   int line = 0;
   int column = 0;
@@ -64,9 +73,6 @@ int main(void) {
     graph[i][0] = lineoffset[line+1] + column;
     graph[i][1] = lineoffset[line+1] + column + 1;
     column++;
-    // if (i > 1)
-    //   cout << graph[i-2][0] << " " << graph[i-2][1] << endl;
-    // cout << graph[i-1][0] << " " << graph[i-1][1] << endl;
   }
 
   for (int i = 0; i <= 104; i++) {
