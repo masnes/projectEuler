@@ -12,9 +12,18 @@ using namespace std;
  * };
  */
 
+class nullNodePassed
+{
+  public:
+    int level;
+    int column;
+    int val;
+    nullNodePassed(int level, int column, int val);
+};
+
 int main(void) {
-  fstream myfile("./triangle.txt", ios_base::in);
   /* read numbers in triangles file into an array */
+  fstream myfile("./triangle.txt", ios_base::in);
   int set;
   // there are 120 numbers in the triangles file
   int a[120];
@@ -34,8 +43,22 @@ int main(void) {
   // TODO: do dfs through tree
   // DONE: iterate through array finding 4 highest consecutive values
   // counters tro track the through-array dfs
+  try {
+    addNode(NULL, 0, 0, 0);
+  }
+  catch (nullNodePassed) {
+    cerr << "Attempted to pass a null node";
+  }
   return 0;
 }
 
 node* addNode(node* root, int level, int column, int val) {
+  if (root == NULL) {
+    if (level == 1) {
+    }
+    else {
+      throw nullNodePassed(level, column, val);
+      return NULL;
+    }
+  }
 }
