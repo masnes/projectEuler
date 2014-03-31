@@ -56,17 +56,17 @@ int main(void) {
   int column = 0;
   // 105 numbers before the last row
   for (int i = 0; i <= 104; i++) {
-    if (column >= line) {
+    if (column > line) {
       line++;
       column = 0;
     }
     // printf("line: %d, lineoffset: %d, column: %d\n", line, lineoffset[line], column);
-    graph[i-1][0] = lineoffset[line] + column - 1;
-    graph[i-1][1] = lineoffset[line] + column;
+    graph[i][0] = lineoffset[line+1] + column;
+    graph[i][1] = lineoffset[line+1] + column + 1;
+    column++;
     // if (i > 1)
     //   cout << graph[i-2][0] << " " << graph[i-2][1] << endl;
     // cout << graph[i-1][0] << " " << graph[i-1][1] << endl;
-    column++;
   }
 
   for (int i = 0; i <= 104; i++) {
