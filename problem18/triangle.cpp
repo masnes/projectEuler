@@ -31,6 +31,9 @@ int main(void) {
   }
 
   /* iterate through array in a dfs */
+  // TODO: iterate array into a tree
+  // TODO: do dfs through tree
+  // DONE: iterate through array finding 4 highest consecutive values
   // counters tro track the through-array dfs
   int count = 0;
   // maximum found value
