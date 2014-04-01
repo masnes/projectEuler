@@ -6,5 +6,5 @@
 
 int main(void);
 
-int findmax(int graph[105][2], int curval, int maxval) {
+int findmax(int graph[105][2], int curval, int maxval);
 
