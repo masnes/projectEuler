@@ -2,25 +2,6 @@
 
 using namespace std;
 
-/*
- * struct node {
- *   node* leftparent = NULL;
- *   node* rightparent = NULL;
- *   node* leftchild = NULL;
- *   node* rightchild = NULL;
- *   int val = INT_MAX;
- * };
- */
-
-class nullNodePassed
-{
-  public:
-    int level;
-    int column;
-    int val;
-    nullNodePassed(int level, int column, int val);
-};
-
 int main(void) {
 
   /* read numbers in triangles file into an array */
@@ -39,9 +20,9 @@ int main(void) {
     cout << endl;
   }
 
-  /* detect what each offset of the val_array that 
+  /* detect what each offset of the val_array that
    * represents the start of a new line of values:
-   * 
+   *
    * we're using a linear array to store the triangle data
    * we need some way to find this offset
    * will be used as tool for populating a graph
@@ -56,8 +37,12 @@ int main(void) {
     }
     lineoffset[i] = counter;
     // printf("lineoffset at %d = %d \n", i, lineoffset[i]);
-  } 
+  }
 
+  /*
+   * build a graph that links between each value and the values
+   * below it
+   */
   // only using graph[i][0] and graph[i][1], but the extra padding seems to avoid a bug (array space overflow issues?)
   // 120 numbers, 2 children per number (0 and 1) except for last row
   // 105 numbers before last row
@@ -76,20 +61,19 @@ int main(void) {
     column++;
   }
 
+  /*
+  // test to see if "graph" contains the correct values
   for (int i = 0; i <= 104; i++) {
     cout << i << ": " << graph[i][0] << " " << graph[i][1] << endl;
   }
-
-  /*
-  for (int i = 0; i <= 104; i++) {
-    printf("graph[%d][%d] = %d | ", i, 0, graph[i][0]);
-    printf("graph[%d][%d] = %d\n", i, 1, graph[i][1]);
-  }
   */
+}
+
+int findmax(int graph[105][2], int curval, int maxval) {
+}
 
   /* iterate through array changing values to tree */
-  // TODO: iterate array into a tree
-  // TODO: do dfs through tree
+  // DONE: iterate array into a tree
+  // TODO: do full iteration through each tree
   // DONE: iterate through array finding 4 highest consecutive values
-  // counters tro track the through-array dfs
-}
+  // counters to track the through-array dfs
