@@ -14,10 +14,14 @@ int main(void) {
     for (int j = 1; j <= i; j++) {
       myfile >> set;
       val_array[counter] = set;
-      cout << counter << ":" << val_array[counter] << "  ";
+      // for debugging (should print out triangle of numbers)
+      // be sure to uncomment the next cout statement as well
+      // cout << counter << ":" << val_array[counter] << "  ";
       counter++;
     }
-    cout << endl;
+    // for debugging (should print out triangle of numbers)
+    // be sure to uncomment the previous cout statement as well
+    // cout << endl;
   }
 
   /* detect what each offset of the val_array that
@@ -67,9 +71,27 @@ int main(void) {
     cout << i << ": " << graph[i][0] << " " << graph[i][1] << endl;
   }
   */
+  int maximum = findmax(val_array, graph, 0, 0);
+  cout << "The maximum value found is: " << maximum << endl;
 }
 
-int findmax(int graph[105][2], int curval, int maxval) {
+int findmax(int val_array[120], int graph[105][2], int curposition, int curval) {
+  int max1 = -1;
+  int max2 = -1;
+  curval = curval + val_array[curposition];
+  // there are 105 numbers before the last row of numbers
+  if (curposition <= 104) {
+    max1 = findmax(val_array, graph, graph[curposition][0], curval);
+    max2 = findmax(val_array, graph, graph[curposition][1], curval);
+  }
+  else {
+    return curval;
+  }
+  if (max1 == -1 || max2 == -1) {
+    cerr << "Error, max values not initialized in recursive function \n";
+    return -1;
+  }
+  return max1 > max2 ? max1 : max2;
 }
 
   /* iterate through array changing values to tree */

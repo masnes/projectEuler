@@ -6,5 +6,6 @@
 
 int main(void);
 
-int findmax(int graph[105][2], int curval, int maxval);
+// recursive function to find the maximum valued path
+int findmax(int val_array[120], int graph[105][2], int curposition, int curval);
 
